@@ -34,7 +34,7 @@ typedef	struct	s_vector
 	double		diag;
 }		t_vector;
 
-typedef		s_
+typedef	struct	s_
 {
 	int		lat;
 	int		lng;
