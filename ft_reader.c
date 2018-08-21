@@ -6,11 +6,27 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 14:46:05 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 17:25:40 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	mtp(t_fdf *fdf, char **split, char *line)
+{
+	(*fdf).row++;
+	(*fdf).col = 0;
+	split = ft_strsplit(line, ' ');
+	while (split[(*fdf).col])
+		(*fdf).col++;
+	if ((*fdf).row == 1)
+		fdf->width = (*fdf).col;
+	if (fdf->width != (*fdf).col)
+	{
+		ft_putstr("Line Width Are Not Equal\n");
+		exit(0);
+	}
+}
 
 void	ft_size(t_fdf *fdf)
 {
@@ -24,20 +40,7 @@ void	ft_size(t_fdf *fdf)
 	}
 	(*fdf).row = 0;
 	while (get_next_line((*fdf).fd, &line) == 1)
-	{
-		(*fdf).row++;
-		(*fdf).col = 0;
-		split = ft_strsplit(line, ' ');
-		while (split[(*fdf).col])
-			(*fdf).col++;
-		if ((*fdf).row == 1)
-			fdf->width = (*fdf).col;
-		if (fdf->width != (*fdf).col)
-		{
-			ft_putstr("Line Width Are Not Equal\n");
-			exit(0);
-		}
-	}
+		mtp(fdf, split, line);
 	fdf->height = (*fdf).row;
 	if ((*fdf).width == 0 || (*fdf).height == 0)
 	{
