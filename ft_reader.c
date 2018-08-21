@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 12:20:12 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:10:36 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,33 @@
 
 void	ft_size(t_fdf *fdf)
 {
-	int		row;
-	int		col;
 	char	**split;
 	char	*line;
 
 	if ((fdf->fd = open((*fdf).fn, O_RDONLY)) < 0)
 		exit(0);
-	row = 0;
+	(*fdf).row = 0;
 	while (get_next_line((*fdf).fd, &line) == 1)
 	{
-		row++;
-		col = 0;
+		(*fdf).row++;
+		(*fdf).col = 0;
 		split = ft_strsplit(line, ' ');
-		while (split[col])
-			col++;
-		if (row == 1)
-			fdf->width = col;
-		if (fdf->width != col)
+		while (split[(*fdf).col])
+			(*fdf).col++;
+		if ((*fdf).row == 1)
+			fdf->width = (*fdf).col;
+		if (fdf->width != (*fdf).col)
 		{
-			perror("Line Width Are Is Not Equal");
+			ft_putstr("Line Width Are Not Equal\n");
 			exit(0);
 		}
 	}
-	fdf->height = row;
+	fdf->height = (*fdf).row;
+	if ((*fdf).width == 0 || (*fdf).height == 0)
+	{
+		ft_putstr("File Is Empty\n");
+		exit(0);
+	}
 }
 
 int		**map_to_array(t_fdf *fdf)
@@ -53,11 +56,6 @@ int		**map_to_array(t_fdf *fdf)
 	array = (int **)malloc(sizeof(int *) * (*fdf).height);
 	while (get_next_line((*fdf).fd, &(*fdf).line) > 0)
 	{
-		if ((*fdf).width == 0)
-		{
-			perror("File Is Empty");
-			exit(0);
-		}
 		j = 0;
 		s = ft_strsplit((*fdf).line, ' ');
 		array[i] = (int *)malloc(sizeof(int) * (*fdf).width);
