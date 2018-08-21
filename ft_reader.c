@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 13:10:36 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 14:46:05 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_size(t_fdf *fdf)
 	char	*line;
 
 	if ((fdf->fd = open((*fdf).fn, O_RDONLY)) < 0)
+	{
+		ft_putstr("hello");
 		exit(0);
+	}
 	(*fdf).row = 0;
 	while (get_next_line((*fdf).fd, &line) == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 09:18:34 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/20 17:05:06 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:17:21 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef	struct	s_fdf
 	float	X;
 	float	Y;
 	float	Z;
-	float	XX;
-	float	YY;
-	int		P1[2];
-	int		P2[2];
+	float	xx;
+	float	yy;
+	int		p1[2];
+	int		p2[2];
 	int		i;
 	int		j;
 	int		**array;
@@ -55,6 +55,8 @@ typedef	struct	s_fdf
 	int		x2;
 	int		y2;
 	int		zoom;
+	int		col;
+	int		row;
 }				t_fdf;
 
 int		abs(int n);
@@ -70,7 +72,5 @@ void	ft_size(t_fdf *fdf);
 int		ft_esc(int keycode, void *param);
 
 void	ft_fdf(char *arg);
-
-void	ft_fail(char *arg);
 
 #endif

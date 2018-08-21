@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:16:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/20 17:05:08 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:07:34 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_fdf(char *arg)
 		ft_putchar('\n');
 		exit(0);
 	}
-	ft_fail(arg);
 	(*fdf).zoom = 25;
 	(*fdf).mlx_ptr = mlx_init();
 	(*fdf).win_ptr = mlx_new_window((*fdf).mlx_ptr, WINW, WINH, "Fil De Fer");

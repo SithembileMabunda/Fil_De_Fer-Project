@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 09:34:02 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 11:35:29 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:17:18 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	link_x(t_fdf **fdf, int x, int y)
 {
-	(*fdf)->P1[0] = (x - 1) * (*fdf)->zoom + WINW / 3;
-	(*fdf)->P1[1] = (y - 1) * (*fdf)->zoom + WINH / 3;
-	(*fdf)->P2[0] = x * (*fdf)->zoom + WINW / 3;
-	(*fdf)->P2[1] = (y - 1) * (*fdf)->zoom + WINH / 3;
-	(*fdf)->P1[0] -= 2 * (*fdf)->array[y - 1][x - 1];
-	(*fdf)->P1[1] -= 2 * (*fdf)->array[y - 1][x - 1];
-	(*fdf)->P2[0] -= 2 * (*fdf)->array[y][x];
-	(*fdf)->P2[1] -= 2 * (*fdf)->array[y][x];
+	(*fdf)->p1[0] = (x - 1) * (*fdf)->zoom + WINW / 3;
+	(*fdf)->p1[1] = (y - 1) * (*fdf)->zoom + WINH / 3;
+	(*fdf)->p2[0] = x * (*fdf)->zoom + WINW / 3;
+	(*fdf)->p2[1] = (y - 1) * (*fdf)->zoom + WINH / 3;
+	(*fdf)->p1[0] -= 2 * (*fdf)->array[y - 1][x - 1];
+	(*fdf)->p1[1] -= 2 * (*fdf)->array[y - 1][x - 1];
+	(*fdf)->p2[0] -= 2 * (*fdf)->array[y][x];
+	(*fdf)->p2[1] -= 2 * (*fdf)->array[y][x];
 }
 
 void	link_y(t_fdf **fdf, int x, int y)
 {
-	(*fdf)->P1[1] = (x - 1) * (*fdf)->zoom + WINH / 3;
-	(*fdf)->P1[0] = (y - 1) * (*fdf)->zoom + WINW / 3;
-	(*fdf)->P2[1] = x * (*fdf)->zoom + WINH / 3;
-	(*fdf)->P2[0] = (y - 1) * (*fdf)->zoom + WINW / 3;
+	(*fdf)->p1[1] = (x - 1) * (*fdf)->zoom + WINH / 3;
+	(*fdf)->p1[0] = (y - 1) * (*fdf)->zoom + WINW / 3;
+	(*fdf)->p2[1] = x * (*fdf)->zoom + WINH / 3;
+	(*fdf)->p2[0] = (y - 1) * (*fdf)->zoom + WINW / 3;
 	//(*fdf)->P1[1] += 2 * (*fdf)->array[y - 1][x - 1];
 	//(*fdf)->P1[0] += 2 * (*fdf)->array[y - 1][x - 1];
 	//(*fdf)->P2[1] += 2 * (*fdf)->array[y][x];
@@ -40,23 +40,23 @@ void	ft_draw_line(t_fdf *fdf, int color)
 {
 	int i;
 
-	(*fdf).x1 = (*fdf).P1[0];
-	(*fdf).x2 = (*fdf).P2[0];
-	(*fdf).y1 = (*fdf).P1[1];
-	(*fdf).y2 = (*fdf).P2[1];
+	(*fdf).x1 = (*fdf).p1[0];
+	(*fdf).x2 = (*fdf).p2[0];
+	(*fdf).y1 = (*fdf).p1[1];
+	(*fdf).y2 = (*fdf).p2[1];
 	(*fdf).dx = (*fdf).x2 - (*fdf).x1;
 	(*fdf).dy = (*fdf).y2 - (*fdf).y1;
 	fdf->steps = LINE;
-	(*fdf).XX = (*fdf).dx / (float)(*fdf).steps;
-	(*fdf).YY = (*fdf).dy / (float)(*fdf).steps;
+	(*fdf).xx = (*fdf).dx / (float)(*fdf).steps;
+	(*fdf).yy = (*fdf).dy / (float)(*fdf).steps;
 	(*fdf).X = (*fdf).x1;
 	(*fdf).Y = (*fdf).y1;
 	i = 0;
 	while (i < (*fdf).steps)
 	{
 		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, fdf->X, fdf->Y, color);
-		(*fdf).X = (*fdf).X + (*fdf).XX;
-		(*fdf).Y = (*fdf).Y + (*fdf).YY;
+		(*fdf).X = (*fdf).X + (*fdf).xx;
+		(*fdf).Y = (*fdf).Y + (*fdf).yy;
 		i++;
 	}
 }
