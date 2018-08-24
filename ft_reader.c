@@ -6,21 +6,34 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 17:25:40 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/24 10:52:57 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	fdp(void **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+}
+
 void	mtp(t_fdf *fdf, char **split, char *line)
 {
 	(*fdf).row++;
 	(*fdf).col = 0;
-	split = ft_strsplit(line, ' ');
+	split - ft_strsplit(line, ' ');
 	while (split[(*fdf).col])
 		(*fdf).col++;
 	if ((*fdf).row == 1)
 		fdf->width = (*fdf).col;
+	fdp((void **)split);
 	if (fdf->width != (*fdf).col)
 	{
 		ft_putstr("Line Width Are Not Equal\n");
@@ -35,12 +48,15 @@ void	ft_size(t_fdf *fdf)
 
 	if ((fdf->fd = open((*fdf).fn, O_RDONLY)) < 0)
 	{
-		ft_putstr("hello");
+		ft_perror("");
 		exit(0);
 	}
 	(*fdf).row = 0;
 	while (get_next_line((*fdf).fd, &line) == 1)
+	{
 		mtp(fdf, split, line);
+		free(line);
+	}
 	fdf->height = (*fdf).row;
 	if ((*fdf).width == 0 || (*fdf).height == 0)
 	{
@@ -71,8 +87,11 @@ int		**map_to_array(t_fdf *fdf)
 			j++;
 		}
 		free((*fdf).line);
+		array[i][j] = '\0';
+		fdp((void **)s);
 		i++;
 	}
+	array[i] = NULL;
 	close((*fdf).fd);
 	return (array);
 }

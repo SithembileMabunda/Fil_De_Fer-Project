@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:16:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 13:07:34 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/24 10:28:32 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ void	ft_fdf(char *arg)
 	ft_draw_vert(fdf);
 	mlx_key_hook((*fdf).win_ptr, ft_esc, fdf);
 	mlx_loop((*fdf).mlx_ptr);
+	close((*fdf).fd);
+	free2darray((void**)fdf->array);
+	free(&fdf);
 }

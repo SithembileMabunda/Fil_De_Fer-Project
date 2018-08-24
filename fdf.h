@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 09:18:34 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/21 17:22:56 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/24 10:47:41 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include <stdio.h>
-# include "../LIBFT/libft.h"
+# include "libft/libft.h"
 # include "mlx.h"
 # include <errno.h>
 # include <math.h>
@@ -24,6 +24,8 @@
 # define WINW 1366
 # define WINH 768
 # define LINE (abs(fdf->dx) > abs(fdf->dy) ? abs(fdf->dx) : abs(fdf->dy))
+# define LINE1 ((*fdf).array[(*fdf).i][(*fdf).j] != 0)
+# define LINE2 ((*fdf).array[(*fdf).i - 1][(*fdf).j] != 0)
 
 typedef	struct	s_fdf
 {
@@ -36,8 +38,8 @@ typedef	struct	s_fdf
 	int			dx;
 	int			dy;
 	int			steps;
-	float		x;
-	float		y;
+	int			x;
+	int			y;
 	float		xx;
 	float		yy;
 	int			p1[2];
@@ -64,6 +66,8 @@ void			ft_draw_horz(t_fdf *fdf);
 
 int				**map_to_array(t_fdf *fdf);
 void			ft_size(t_fdf *fdf);
+void			mtp(t_fdf *fdf, char **split, char *line);
+void			fdp(void **array);
 
 int				ft_esc(int keycode, void *param);
 
