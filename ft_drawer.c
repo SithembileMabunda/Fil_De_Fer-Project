@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 09:34:02 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/24 10:48:23 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/25 09:57:52 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_draw_horz(t_fdf *fdf)
 		while ((*fdf).j < (*fdf).width)
 		{
 			link_x(&fdf, (*fdf).j, (*fdf).i);
-			if (LINE1 && LINE2)
+			if (LINE1 && LINE3)
 				ft_draw_line(fdf, BLUE);
 			else
 				ft_draw_line(fdf, RED);

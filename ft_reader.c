@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/24 10:52:57 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/25 10:13:32 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 void	fdp(void **array)
 {
-	int i;
+	int n;
 
-	i = 0;
-	while (array[i])
+	n = 0;
+	while (array[n])
 	{
-		free(array[i]);
-		i++;
+		free(array[n]);
+		n++;
 	}
+	free(array);
 }
 
 void	mtp(t_fdf *fdf, char **split, char *line)
 {
 	(*fdf).row++;
 	(*fdf).col = 0;
-	split - ft_strsplit(line, ' ');
+	split = ft_strsplit(line, ' ');
 	while (split[(*fdf).col])
 		(*fdf).col++;
 	if ((*fdf).row == 1)
@@ -48,7 +49,7 @@ void	ft_size(t_fdf *fdf)
 
 	if ((fdf->fd = open((*fdf).fn, O_RDONLY)) < 0)
 	{
-		ft_perror("");
+		ft_putstr("hello");
 		exit(0);
 	}
 	(*fdf).row = 0;
@@ -68,30 +69,28 @@ void	ft_size(t_fdf *fdf)
 int		**map_to_array(t_fdf *fdf)
 {
 	int		**array;
-	int		i;
-	int		j;
 	char	**s;
 
-	i = 0;
+	(*fdf).i = 0;
 	ft_size(fdf);
 	(*fdf).fd = open((*fdf).fn, O_RDONLY);
-	array = (int **)malloc(sizeof(int *) * (*fdf).height);
+	array = (int **)malloc(sizeof(int *) * ((*fdf).height) + 1);
 	while (get_next_line((*fdf).fd, &(*fdf).line) > 0)
 	{
-		j = 0;
+		(*fdf).j = 0;
 		s = ft_strsplit((*fdf).line, ' ');
-		array[i] = (int *)malloc(sizeof(int) * (*fdf).width);
-		while (s[j])
+		array[(*fdf).i] = (int *)malloc(sizeof(int) * ((*fdf).width) + 1);
+		while (s[(*fdf).j])
 		{
-			array[i][j] = ft_atoi(s[j]);
-			j++;
+			array[(*fdf).i][(*fdf).j] = ft_atoi(s[(*fdf).j]);
+			(*fdf).j++;
 		}
 		free((*fdf).line);
-		array[i][j] = '\0';
+		array[(*fdf).i][(*fdf).j] = '\0';
 		fdp((void **)s);
-		i++;
+		(*fdf).i++;
 	}
-	array[i] = NULL;
+	array[(*fdf).i] = NULL;
 	close((*fdf).fd);
 	return (array);
 }
