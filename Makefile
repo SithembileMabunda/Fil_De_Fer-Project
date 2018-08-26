@@ -6,11 +6,11 @@
 #    By: smabunda <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/20 09:44:30 by smabunda          #+#    #+#              #
-#    Updated: 2018/08/23 10:35:02 by smabunda         ###   ########.fr        #
+#    Updated: 2018/08/26 11:54:45 by smabunda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-Name = fdf
+NAME = fdf
 
 Sources = ft_fdf.c fdf.c ft_esc.c ft_drawer.c ft_reader.c
 
@@ -20,22 +20,19 @@ Includes = fdf.h
 
 CC = gcc
 
-CFLAGS = -Wall -Wexta -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
-MLXFLAGS = -L/usr/local/include -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS = -L /usr/local/include -lmlx -framework OpenGL -framework AppKit
 
-Libft = -L./libft -ft
+Libft = -L ./libft -lft
 
-Libft_ = .libft
+Libft_ = libft/
 
 all : $(NAME)
 
 $(NAME) : $(Objects)
 		@make -C $(Libft_)
-		@$(CC) $(CFLAGS) -o $(Name) -I $(Include) $(MLXFLAGS) $(Libft)
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) -o $(NAME) $(Objects) -lm -L $(Libft_) -lft -lmlx -framework OpenGL -framework AppKit
 
 clean :
 		/bin/rm -f $(Objects)

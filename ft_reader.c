@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 10:38:07 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/25 10:13:32 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/26 11:55:45 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_size(t_fdf *fdf)
 	char	**split;
 	char	*line;
 
+	split = NULL;
 	if ((fdf->fd = open((*fdf).fn, O_RDONLY)) < 0)
 	{
 		ft_putstr("hello");

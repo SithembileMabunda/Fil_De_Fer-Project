@@ -6,7 +6,7 @@
 /*   By: smabunda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 09:18:34 by smabunda          #+#    #+#             */
-/*   Updated: 2018/08/25 10:15:14 by smabunda         ###   ########.fr       */
+/*   Updated: 2018/08/26 11:54:40 by smabunda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include <stdio.h>
-# include "../LIBFT/libft.h"
+# include "libft/libft.h"
 # include "mlx.h"
 # include <errno.h>
 # include <math.h>
